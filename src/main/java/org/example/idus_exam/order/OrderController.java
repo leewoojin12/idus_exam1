@@ -41,6 +41,10 @@ public class OrderController {
 
     @GetMapping("/list")
     public ResponseEntity<OrderDto.OrderPageResponse> list(int page, int size) {
+
+        // TODO  list 검색시 1명당 최대 1개의 최신 주문 목록 표시해야함
+
+        // 지금은 전체 조회 되어가지고안  되는 중     !&*@#&!^@%#^&
         OrderDto.OrderPageResponse response = orderService.list(page, size);
 
         return ResponseEntity.ok(response);

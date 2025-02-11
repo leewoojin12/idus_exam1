@@ -1,5 +1,6 @@
 package org.example.idus_exam.config;
 
+ import jakarta.servlet.http.Cookie;
  import lombok.RequiredArgsConstructor;
  import org.example.idus_exam.config.filter.JwtFilter;
  import org.example.idus_exam.config.filter.LoginFilter;
@@ -32,14 +33,19 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.httpBasic(AbstractHttpConfigurer::disable);
         http.formLogin(AbstractHttpConfigurer::disable);
-        http.logout((logout) -> logout
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .invalidateHttpSession(true));
-        http.authorizeHttpRequests(
+//        http.logout((logout) -> logout
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessHandler((request, response, authentication) -> {
+//                    Cookie cookie = new Cookie("ATOKEN", null); // 쿠키 값을 null로 설정
+//                    cookie.setMaxAge(0);
+//                    cookie.setPath("/");
+//                    response.addCookie(cookie);
+//                })
+         http.authorizeHttpRequests(
                 (auth) -> auth
                         .requestMatchers("/swagger", "/swagger-ui.html", "/swagger-ui/**", "/api-docs", "/api-docs/**", "/v3/api-docs/**")
                         .permitAll()
-                        .requestMatchers("/logout","/login", "/member/signup","/member/verify" ,"/order/orders/*" , "/order/list","/member/profile/*").permitAll()
+                        .requestMatchers("/member/logout","/login", "/member/signup","/member/verify" ,"/order/orders/*" , "/order/list","/member/profile/*").permitAll()
 
                         .anyRequest().authenticated()
         );
