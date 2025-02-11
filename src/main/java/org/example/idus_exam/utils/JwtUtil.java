@@ -4,11 +4,15 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Value;
 import org.example.idus_exam.member.Member;
 
 import java.util.Date;
 
 public class JwtUtil {
+
+//    @Value("${jwt.secret}")
+//
     private static final String SECRET = "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789";
     private static final int EXP = 30 * 60 * 1000;
 
