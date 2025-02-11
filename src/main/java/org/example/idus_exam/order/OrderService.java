@@ -21,7 +21,7 @@ public class OrderService {
 
     }
 
-
+1
     public void find (Long idx){
         List<Order> = orderRepository.findById(idx).orElseThrow();
 
