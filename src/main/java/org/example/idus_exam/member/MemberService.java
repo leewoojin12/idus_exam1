@@ -17,19 +17,18 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
 
 
-
     private final MemberRepository memberRepository;
 
     private final PasswordEncoder passwordEncoder;
-    public void save(MemberDto.SignupRequest memberDto ) {
-        memberRepository.save(memberDto.toEntity(passwordEncoder ));
+
+    public void save(MemberDto.SignupRequest memberDto) {
+        memberRepository.save(memberDto.toEntity(passwordEncoder));
     }
 
     public void logout() {
 
 
     }
-
 
 
     @Override
@@ -45,6 +44,19 @@ public class MemberService implements UserDetailsService {
 
         return null;
     }
+
+    public MemberDto.UserResponse find(Long memberidx) {
+        Optional<Member> result = memberRepository.findById(memberidx);
+
+        if (result.isPresent()) {
+            // 7번 로직
+            Member member = result.get();
+            return MemberDto.UserResponse.from(member);
+        }
+        return null;
+
+    }
+}
 //
 //    public MemberDto.UserResponse find(Long idx) {
 //        Member member = memberRepository.findById(idx).orElseThrow();
@@ -52,4 +64,4 @@ public class MemberService implements UserDetailsService {
 //
 //        return null;
 //    }
-}
+

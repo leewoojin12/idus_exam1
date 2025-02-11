@@ -26,9 +26,12 @@ public class MemberController {
 
 
     }
-    @PostMapping("/profile/{memberidx}")
-    public void profile(@PathVariable Long memberidx){
-//        memberService.find(memberidx);
+    @GetMapping("/profile/{memberidx}")
+    public ResponseEntity<MemberDto.UserResponse> profile(@PathVariable Long memberidx){
+        MemberDto.UserResponse response = memberService.find(memberidx);
+
+
+        return ResponseEntity.ok(response);
 
     }
 
