@@ -11,6 +11,7 @@ import org.example.idus_exam.member.Member;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "orders")
 @Builder
 @Getter
 @AllArgsConstructor
@@ -23,14 +24,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-
+    private String productName;
+    private LocalDateTime dateTime;
 
 
     @ManyToOne
-    @JoinColumn(name = "member_idx")
+    @JoinColumn(name="member_idx")
     private Member member;
-
-    private String productName;
-    private LocalDateTime dateTime;
 
 }
