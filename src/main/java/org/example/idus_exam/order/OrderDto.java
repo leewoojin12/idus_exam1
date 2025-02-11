@@ -32,6 +32,27 @@ public class OrderDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    public static class UserOrderResponse {
+        private Long idx;
+        private String name;
+        List<OrderResponse> orders = new ArrayList<>();
+
+
+        public static UserOrderResponse from(Member member) {
+            return UserOrderResponse.builder()
+                    .idx(member.getIdx())
+                    .name(member.getName())
+                    .orders(member.getOrders().stream().map(OrderResponse::from).collect(Collectors.toList()))
+                    .build();
+        }
+
+    }
+
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
     public static class OrderResponse {
         private Long idx;
         private String productName;
@@ -46,6 +67,8 @@ public class OrderDto {
         }
 
     }
+
+
 
 
 }

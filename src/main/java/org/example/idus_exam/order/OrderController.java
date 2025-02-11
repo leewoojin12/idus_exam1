@@ -19,7 +19,7 @@ public class OrderController {
 
 
     private final OrderService orderService;
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public void order(@RequestBody OrderDto.orderReq dto ,@AuthenticationPrincipal Member member) {
 
 
@@ -29,18 +29,19 @@ public class OrderController {
 
 
     }
-    @RequestMapping("/{orderidx}")
-    public ResponseEntity<List<Order>> read(@PathVariable Long idx){
-//        List<Order> orderlist = orderService.find(idx);
+    @GetMapping("/orders/{orderIdx}")
+    public ResponseEntity<OrderDto.UserOrderResponse> read(@PathVariable Long orderIdx){
+        OrderDto.UserOrderResponse response = orderService.find(orderIdx);
 
-        return null;
+        return ResponseEntity.ok(response);
     }
 
 
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public ResponseBody aa(){
 
+        return null;
     }
 
 
