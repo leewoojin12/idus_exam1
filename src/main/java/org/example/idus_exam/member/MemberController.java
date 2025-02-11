@@ -4,10 +4,10 @@ package org.example.idus_exam.member;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.idus_exam.order.OrderDto;
+import org.example.idus_exam.order.OrderService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/member")
@@ -16,21 +16,17 @@ public class MemberController {
 
 
     private final MemberService memberService;
+    private final OrderService orderService;
 
 
-    @RequestMapping("/signup")
+    @PostMapping("/signup")
     public void signup(@RequestBody MemberDto.SignupRequest dto ){
 
         memberService.save(dto);
 
 
     }
-    @RequestMapping("/logout")
-    public void logout(){
-        memberService.logout();
-
-    }
-    @RequestMapping("/profile/{memberidx}")
+    @PostMapping("/profile/{memberidx}")
     public void profile(@PathVariable Long memberidx){
 //        memberService.find(memberidx);
 
