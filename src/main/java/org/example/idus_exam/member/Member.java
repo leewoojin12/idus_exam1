@@ -35,7 +35,7 @@ public class Member implements UserDetails {
     private String sex;
 
     private String role;
-
+ 
 
     @OneToMany(mappedBy = "member")
     private List<Order> orderList = new ArrayList<>();
