@@ -19,9 +19,9 @@ public class MemberController {
 
 
     @RequestMapping("/signup")
-    public void signup(@RequestBody MemberDto.signupRequest dto ){
+    public void signup(@RequestBody MemberDto.SignupRequest dto ){
 
-        memberService.save(dto );
+        memberService.save(dto);
 
 
     }

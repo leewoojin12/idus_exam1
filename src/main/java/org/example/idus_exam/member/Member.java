@@ -25,26 +25,23 @@ public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-
-
     private String name;
     private String nickname;
     private String password;
     private int number;
     private String email;
     private String sex;
-
     private String role;
- 
+
 
     @OneToMany(mappedBy = "member")
-    private List<Order> orderList = new ArrayList<>();
+    private List<Order> orders;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+role);
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
 
         authorities.add(authority);
         return authorities;
@@ -75,6 +72,6 @@ public class Member implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-return true;
+        return true;
     }
 }

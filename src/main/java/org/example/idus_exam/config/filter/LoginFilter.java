@@ -36,7 +36,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 //                new MemberDto.SignupRequest(request.getParameter("Membername"), request.getParameter("password"));
         try {
             // 그림에서 원래 1번이었던 로직을 JSON 형태의 데이터를 처리하도록 변경
-            MemberDto.signupRequest MemberDto  = new ObjectMapper().readValue(request.getInputStream(), MemberDto.signupRequest.class);
+            MemberDto.SignupRequest MemberDto  = new ObjectMapper().readValue(request.getInputStream(), MemberDto.SignupRequest.class);
 
             // 그림에서 2번 로직
             authToken =
@@ -50,14 +50,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         return authenticationManager.authenticate(authToken);
     }
 
-    
+
     // 그림에서 9번 로직
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         Member Member = (Member) authResult.getPrincipal();
-        String jwtToken = JwtUtil.generateToken(Member.getIdx(), Member.getEmail(), Member.getNickname(),Member.getRole());
+        String jwtToken = JwtUtil.generateToken(Member.getIdx(), Member.getEmail(), Member.getNickname(), Member.getRole());
 
-        
+
 //        일반적인 객체 생성 및 객체의 변수에 값을 설정하는 방법
 //        ResponseCookie cookie = new ResponseCookie();
 //        cookie.setPath("/");

@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class MemberDto {
 
     @Getter
-    public static class signupRequest {
+    public static class SignupRequest {
         private String name;
         private String nickname;
         private String password;
