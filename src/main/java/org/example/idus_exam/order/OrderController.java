@@ -31,7 +31,7 @@ public class OrderController {
     }
     @RequestMapping("/{orderidx}")
     public ResponseEntity<List<Order>> read(@PathVariable Long idx){
-        List<Order> orderlist = orderService.find(idx);
+//        List<Order> orderlist = orderService.find(idx);
 
         return null;
     }
