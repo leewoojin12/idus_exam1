@@ -41,6 +41,8 @@ public class MemberController {
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
+
+
     }
 
     @PostMapping("/logout")
