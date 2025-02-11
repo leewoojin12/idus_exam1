@@ -39,7 +39,7 @@ public class SecurityConfig {
                 (auth) -> auth
                         .requestMatchers("/swagger", "/swagger-ui.html", "/swagger-ui/**", "/api-docs", "/api-docs/**", "/v3/api-docs/**")
                         .permitAll()
-                        .requestMatchers("/logout","/login", "/member/signup","/member/verify" ,"/order/orders/*" , "/order/list").permitAll()
+                        .requestMatchers("/logout","/login", "/member/signup","/member/verify" ,"/order/orders/*" , "/order/list","/member/profile/*").permitAll()
 
                         .anyRequest().authenticated()
         );
