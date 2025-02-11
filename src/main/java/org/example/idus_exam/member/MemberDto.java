@@ -1,6 +1,9 @@
 package org.example.idus_exam.member;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class MemberDto {
@@ -28,4 +31,30 @@ public class MemberDto {
 
         }
     }
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class UserResponse {
+        private Long idx;
+        private String name;
+        private String nickname;
+        private String password;
+        private int number;
+        private String email;
+        private String sex;
+
+
+        public static MemberDto.UserResponse from(Member member) {
+            return UserResponse.builder()
+                    .name(member.getName())
+                    .nickname(member.getNickname())
+                    .email(member.getEmail())
+                    .number(member.getNumber())
+                    .build();
+        }
+
+    }
+
+
 }

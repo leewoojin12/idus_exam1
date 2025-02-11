@@ -32,7 +32,7 @@ public class MemberController {
     }
     @RequestMapping("/profile/{memberidx}")
     public void profile(@PathVariable Long memberidx){
-        memberService.find(memberidx);
+//        memberService.find(memberidx);
 
     }
 

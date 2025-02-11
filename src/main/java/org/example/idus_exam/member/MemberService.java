@@ -45,8 +45,11 @@ public class MemberService implements UserDetailsService {
 
         return null;
     }
-
-    public void find(Long idx) {
-        memberRepository.findById(idx);
-    }
+//
+//    public MemberDto.UserResponse find(Long idx) {
+//        Member member = memberRepository.findById(idx).orElseThrow();
+//
+//
+//        return null;
+//    }
 }
