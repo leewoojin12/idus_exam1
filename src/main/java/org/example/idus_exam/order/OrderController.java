@@ -19,6 +19,7 @@ public class OrderController {
 
 
     private final OrderService orderService;
+
     @PostMapping("/save")
     public void order(@RequestBody OrderDto.orderReq dto ,@AuthenticationPrincipal Member member) {
 
@@ -39,9 +40,10 @@ public class OrderController {
 
 
     @GetMapping("/list")
-    public ResponseBody aa(){
+    public ResponseEntity<OrderDto.OrderPageResponse> list(int page, int size) {
+        OrderDto.OrderPageResponse response = orderService.list(page, size);
 
-        return null;
+        return ResponseEntity.ok(response);
     }
 
 

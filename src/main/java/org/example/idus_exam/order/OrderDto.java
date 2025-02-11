@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.idus_exam.member.Member;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,18 +56,50 @@ public class OrderDto {
     @Builder
     public static class OrderResponse {
         private Long idx;
+        private Long memberidx;
         private String productName;
         private LocalDateTime dateTime;
 
         public static OrderResponse from(Order order) {
             return OrderResponse.builder()
                     .idx(order.getIdx())
+                    .memberidx(order.getMember().getIdx())
                     .productName(order.getProductName())
                     .dateTime(order.getDateTime())
                     .build();
         }
 
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class OrderPageResponse {
+        private int page;
+        private int size;
+        private long totalElements;
+        private int totalPages;
+        private boolean hasNext;
+        private boolean hasPrevious;
+
+        private List<OrderResponse> orders;
+
+        public static OrderPageResponse from(Page<Order> orderpage) {
+            return OrderPageResponse.builder()
+                    .page(orderpage.getNumber())
+                    .size(orderpage.getSize())
+                    .totalElements(orderpage.getTotalElements())
+                    .totalPages(orderpage.getTotalPages())
+                    .hasNext(orderpage.hasNext())
+                    .hasPrevious(orderpage.hasPrevious())
+                    .orders(orderpage.stream().map(OrderDto.OrderResponse::from).collect(Collectors.toList()))
+                    .build();
+        }
+    }
+
+
+
 
 
 
