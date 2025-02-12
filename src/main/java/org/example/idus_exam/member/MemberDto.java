@@ -1,5 +1,6 @@
 package org.example.idus_exam.member;
 
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,11 +38,30 @@ public class MemberDto {
     @Builder
     public static class UserResponse {
         private Long idx;
+        @Pattern(regexp = "^[ㄱ-ㅎ가-힣A-Z]+$", message = "이름은 한글 또는 영어 대문자만 입력 가능합니다.")        @Size(max=20 )
+        @NotNull
+        @Size(max=20 )
         private String name;
+
+        @NotNull(message = "닉네임을 필수로 입력하세요")
+        @Size(max=30)
         private String nickname;
+
+        @NotNull(message = "비밀번호는 필수로 입력하세요")
+        @Size(min=10,  message = "비밀번호는 10글자 이상으로 입력해주세요.")
         private String password;
+
+        @NotNull(message = "전화번호는 필수로 입력하세요")
+        @Size(max=20 )
+
         private int number;
+
+        @Email(message = "올바른 이메일 양식을 입력해주세요.") @NotBlank(message = "이메일은 필수로 입력해야합니다.")
+        @NotNull(message = "이메일 필수로 입력하세요")
+        @Size(max=100)
         private String email;
+
+
         private String sex;
 
 
