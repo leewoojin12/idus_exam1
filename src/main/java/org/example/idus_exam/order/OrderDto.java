@@ -1,5 +1,8 @@
 package org.example.idus_exam.order;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -56,8 +59,17 @@ public class OrderDto {
     @Builder
     public static class OrderResponse {
         private Long idx;
+
+        @Pattern(regexp = "^[ㄱ-ㅎ가-힣A-Z]+$", message = "이름은 한글 또는 영어 대문자만 입력 가능합니다.")        @Size(max=20 )
+        @NotNull
+        @Size(max=20 )
         private Long memberidx;
+        @NotNull
+        @Size(max=100 )
+
         private String productName;
+
+        @NotNull
         private LocalDateTime dateTime;
 
         public static OrderResponse from(Order order) {
